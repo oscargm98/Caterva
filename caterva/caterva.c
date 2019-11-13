@@ -937,7 +937,7 @@ int caterva_get_slice(caterva_array_t *dest, caterva_array_t *src, caterva_dims_
     }
     caterva_dims_t shape = caterva_new_dims(shape_, start->ndim);
     caterva_update_shape(dest, &shape);
-
+    printf("Starting get slice chunk by chunk");
     if (dest->storage == CATERVA_STORAGE_BLOSC) {
         uint8_t *chunk = ctx->alloc((size_t) dest->psize * typesize);
         int64_t d_pshape[CATERVA_MAXDIM];
