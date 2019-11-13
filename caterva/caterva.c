@@ -1012,6 +1012,7 @@ int caterva_repart(caterva_array_t *dest, caterva_array_t *src) {
         stop_[i] = src->shape[i];
     }
     caterva_dims_t stop = caterva_new_dims(stop_, dest->ndim);
+    printf("Stat caterva get slice\n");
     caterva_get_slice(dest, src, &start, &stop);
     return 0;
 }
@@ -1086,6 +1087,7 @@ int caterva_copy(caterva_array_t *dest, caterva_array_t *src) {
             caterva_to_buffer(src, dest->buf);
             dest->filled = true;
         } else {
+            printf("Start caterva repart\n");
             caterva_repart(dest, src);
         }
     }
