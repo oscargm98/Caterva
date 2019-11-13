@@ -716,6 +716,7 @@ int caterva_get_slice_buffer(void *dest, caterva_array_t *src, caterva_dims_t *s
                                         }
 
                                         if ((src->part_cache.data == NULL) || (src->part_cache.nchunk != nchunk)) {
+                                            printf("DEcomrpess vlosc chunck with caterva_Get_slice_buffer\n");
                                             blosc2_schunk_decompress_chunk(src->sc, nchunk, chunk,
                                                                            (size_t) src->psize * typesize);
                                         }
