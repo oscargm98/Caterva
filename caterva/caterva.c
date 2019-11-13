@@ -982,6 +982,7 @@ int caterva_get_slice(caterva_array_t *dest, caterva_array_t *src, caterva_dims_
                                         printf("Start get slice buffer");
                                         caterva_get_slice_buffer(chunk, src, &start__, &stop__, &d_pshape__);
                                         printf("Append buffer to blosc\n");
+                                        printf("chunk size: %d\n", dest->psize * typesize);
                                         int err = blosc2_schunk_append_buffer(dest->sc, chunk, (size_t) dest->psize * typesize);
                                         printf("Blosc err: %d\n", err);
                                         printf("Finish to append buffer to blosc\n");
@@ -993,7 +994,7 @@ int caterva_get_slice(caterva_array_t *dest, caterva_array_t *src, caterva_dims_
                 }
             }
         }
-        free(chunk);
+        ctx->free(chunk);
     } else {
         uint64_t size = 1;
         for (int i = 0; i < stop->ndim; ++i) {
