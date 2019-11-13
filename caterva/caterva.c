@@ -978,7 +978,9 @@ int caterva_get_slice(caterva_array_t *dest, caterva_array_t *src, caterva_dims_
                                         caterva_dims_t start__ = caterva_new_dims(start_, d_ndim);
                                         caterva_dims_t stop__ = caterva_new_dims(stop_, d_ndim);
                                         caterva_dims_t d_pshape__ = caterva_new_dims(d_pshape_, d_ndim);
+                                        printf("Start get slice buffer");
                                         caterva_get_slice_buffer(chunk, src, &start__, &stop__, &d_pshape__);
+                                        printf("Append buffer to blosc\n");
                                         blosc2_schunk_append_buffer(dest->sc, chunk, (size_t) dest->psize * typesize);
                                     }
                                 }
@@ -997,6 +999,7 @@ int caterva_get_slice(caterva_array_t *dest, caterva_array_t *src, caterva_dims_
         dest->buf = malloc(size * typesize);
         caterva_get_slice_buffer(dest->buf, src, start, stop, &shape);
     }
+    printf("Finish get slice \n");
     dest->filled = true;
     return 0;
 }
